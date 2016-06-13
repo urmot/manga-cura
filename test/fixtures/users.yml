@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pass: MyString
+  name: MyString
+  gender: MyString
+  birthday: 2016-06-13
+  email: MyString
+  notice_confide: false
+
+two:
+  pass: MyString
+  name: MyString
+  gender: MyString
+  birthday: 2016-06-13
+  email: MyString
+  notice_confide: false
