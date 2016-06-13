@@ -25,8 +25,11 @@ default: &default
   socket: /var/lib/mysql/mysql.sock
 
 development:
-  <<: *default
-  database: manga-cura_development
+  adapter: sqlite3
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+  database: db/development.sqlite3
 
 test:
   <<: *default
