@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book_id: 
+  chapter: 1
+  number: 1
+  title: MyString
+  image: 
+  url: MyString
+  date: 2016-06-14
+
+two:
+  book_id: 
+  chapter: 1
+  number: 1
+  title: MyString
+  image: 
+  url: MyString
+  date: 2016-06-14
