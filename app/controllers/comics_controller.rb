@@ -7,6 +7,10 @@ class ComicsController < ApplicationController
 
   end
 
+  def favorite
+    
+  end
+
   def search
 
   end
