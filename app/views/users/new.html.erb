@@ -1,12 +1,42 @@
+<h1>Sign up</h1>
+
 <%= form_for @user do |f| %>
   <p>
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </p>
 
+  <p>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%= f.label :gender %>
+    <%= select :gender, :gender, [["Male", "M"], ["Female", "F"]]%>
+  </p>
+
+  <p>
+    <%= f.label :birthday %>
+    <%= f.date_select(:birthday,
+                      :use_month_numbers=>true,
+                      :date_separator => '/',
+                      :start_year=>1930, :end_year => (Time.now.year - 10),
+                      :default =>'1990-1-1'.to_date) %>
+  </p>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
 
   <p>
     <%= f.submit %>
   </p>
 
-  <% end %>
+<% end %>
