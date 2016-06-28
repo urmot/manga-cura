@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   def show
+    @user = User.find(1)
+    @comics = @user.books
 
   end
 
@@ -11,8 +13,10 @@ class UsersController < ApplicationController
 
   end
 
-  def create
+  def edit
+  end
 
+  def update
   end
 
   def login
@@ -22,6 +26,5 @@ class UsersController < ApplicationController
   def
 
   def config
-
   end
 end
