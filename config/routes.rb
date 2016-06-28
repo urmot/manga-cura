@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'comics#top'
 
-  resource :comics
+  resources :comics
   resource :users
 
   match 'top', to: 'comics#top', via: 'get'
