@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(1)
+    @comics = @user.books
   end
 
   def create
@@ -18,14 +19,26 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+  end
+
+  def update
+
+  end
+
   def login
 
   end
+
 
   private
 
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :gender, :birthday, :email)
+  def
+
+  def config
+
   end
 
 end
