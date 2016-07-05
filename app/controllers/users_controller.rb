@@ -3,7 +3,6 @@ class UsersController < ApplicationController
     #ユーザーID1でテスト
     @user = User.find(1)
     @favorites = Favorite.where("user_id  = ?", @user)
-
   end
 
   #お気に入り登録用アクション

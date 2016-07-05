@@ -4,7 +4,7 @@ class ComicsController < ApplicationController
   end
 
   def show
-    @comics = Book.find(params[:id])
+    @comic = Comic.find(params[:id])
   end
 
   def search
