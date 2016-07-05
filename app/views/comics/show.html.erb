@@ -1,9 +1,18 @@
 <h1>本の情報</h1>
+
 <p>
-  タイトル</strong><br>
-  <%= @comic.title %>
+  タイトル<br>
+  <%= @comics.title %>
 </p>
 <p>
   著者<br>
-  <%= @comic.description %>
+  <%= @comics.description %>
+</p>
+
+<p>
+  <%= link_to "お気に入り登録", favorite_path(@comics), method: :get %>
+</p>
+
+<p>
+<%= link_to "本棚",users_path %>
 </p>
