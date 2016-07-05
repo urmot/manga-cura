@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @comics = @user.books
+    @comics = @user.comics
   end
 
   def create
