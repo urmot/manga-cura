@@ -21,7 +21,7 @@ class UsersController < ApplicationController
  end
 
  #お気に入り削除用アクション
- def destroy
+ def destroy_favorite
    @favorite = Favorite.find(params[:id])
    if @favorite.destroy
      #削除に成功した場合、ログインしている本棚画面に戻る
@@ -45,8 +45,8 @@ class UsersController < ApplicationController
 
   end
 
-def config
-  super
-end
+  def setting
+
+  end
 
 end
