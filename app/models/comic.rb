@@ -1,4 +1,4 @@
-class Book < ActiveRecord::Base
+class Comic < ActiveRecord::Base
   has_many :favorites
   has_many :users, through: :favorites
 

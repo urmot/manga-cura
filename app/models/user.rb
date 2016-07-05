@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   has_many :favorites
-  has_many :books, through: :favorites
+  has_many :comics, through: :favorites
 
   has_many :reads
   has_many :stories, through: :reads

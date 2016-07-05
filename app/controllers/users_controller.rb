@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(1)
-    @comics = @user.books
+    @comics = @user.comics
 
   end
 

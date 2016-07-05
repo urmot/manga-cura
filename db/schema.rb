@@ -19,16 +19,6 @@ ActiveRecord::Schema.define(version: 20160613222630) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string   "title",       null: false
-    t.string   "description"
-    t.binary   "image"
-    t.string   "url",         null: false
-    t.integer  "score"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -36,24 +26,34 @@ ActiveRecord::Schema.define(version: 20160613222630) do
   end
 
   create_table "classifications", force: :cascade do |t|
-    t.integer  "book_id"
+    t.integer  "comic_id"
     t.integer  "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "classifications", ["author_id"], name: "index_classifications_on_author_id"
-  add_index "classifications", ["book_id"], name: "index_classifications_on_book_id"
+  add_index "classifications", ["comic_id"], name: "index_classifications_on_comic_id"
+
+  create_table "comics", force: :cascade do |t|
+    t.string   "title",       null: false
+    t.string   "description"
+    t.string   "image_url"
+    t.string   "url",         null: false
+    t.integer  "score"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "book_id"
+    t.integer  "comic_id"
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "favorites", ["book_id"], name: "index_favorites_on_book_id"
+  add_index "favorites", ["comic_id"], name: "index_favorites_on_comic_id"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "jobs", force: :cascade do |t|
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20160613222630) do
   add_index "reads", ["user_id"], name: "index_reads_on_user_id"
 
   create_table "stories", force: :cascade do |t|
-    t.integer  "book_id"
+    t.integer  "comic_id"
     t.integer  "chapter"
     t.integer  "number",     null: false
     t.string   "title",      null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160613222630) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "stories", ["book_id"], name: "index_stories_on_book_id"
+  add_index "stories", ["comic_id"], name: "index_stories_on_comic_id"
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"
@@ -105,13 +105,13 @@ ActiveRecord::Schema.define(version: 20160613222630) do
   end
 
   create_table "writings", force: :cascade do |t|
-    t.integer  "book_id"
+    t.integer  "comic_id"
     t.integer  "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "writings", ["author_id"], name: "index_writings_on_author_id"
-  add_index "writings", ["book_id"], name: "index_writings_on_book_id"
+  add_index "writings", ["comic_id"], name: "index_writings_on_comic_id"
 
 end
