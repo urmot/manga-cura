@@ -1,5 +1,18 @@
 <center><h1>本棚</h1></center>
 
+<<<<<<< HEAD
+<table border = "3">
+  <td>
+    <p>ID　　　　　：<%= @user.id %></p>
+    <p>アカウント名：<%= @user.name %><br></p>
+    <p>お気に入り数：</p>
+    <p>登録作者数　：</p>
+    <p><%= link_to '設定', setting_path %></p>
+    <p><%= link_to '退会', user_path,
+                    method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </td>
+<table>
+=======
 <p>
   <table border = "3">
     <td>
@@ -11,6 +24,7 @@
     </td>
   <table>
 </p>
+>>>>>>> master
 
 <p>
 <table>

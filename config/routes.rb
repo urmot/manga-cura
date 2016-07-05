@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   root 'comics#top'
 
+  get 'signup'    => 'users#new'
+  get 'setting'   => 'users#setting', as:"setting"
+  get 'login'     => 'sessions#new'
+  post 'login'    => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
   resources :comics
-  resource :users
+  resources :users
 
   #以下今回追加分
   get "/users/:id" => "users#add_favorite", as: "favorite"

@@ -1,8 +1,18 @@
 class UsersController < ApplicationController
+
   def show
-    #ユーザーID1でテスト
-    @user = User.find(1)
+    @user = User.find(params[:id])
     @favorites = Favorite.where("user_id  = ?", @user)
+  end
+
+  def create
+    @user = User.new(user_params)
+
+        if @user.save
+          redirect_to @user
+        else
+          render 'new'
+        end
   end
 
   #お気に入り登録用アクション
@@ -29,19 +39,32 @@ class UsersController < ApplicationController
    end
  end
 
-
   def new
-
+    @user = User.new
   end
 
   def edit
+
+  end
+
+  def destroy
+    @user = User.find(params[:id]).destroy
+    #flash[:success]="User deleted"
+    redirect_to top_path
   end
 
   def update
+
   end
 
   def login
 
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :password, :password_confirmation, :gender, :birthday, :email)
   end
 
   def setting
