@@ -6,7 +6,9 @@
     <p>アカウント名：<%= @user.name %><br></p>
     <p>お気に入り数：</p>
     <p>登録作者数　：</p>
-    <p><%= link_to '設定', edit_users_path %></p>
+    <p><%= link_to '設定', setting_path %></p>
+    <p><%= link_to '退会', user_path,
+                    method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </td>
 <table>
 

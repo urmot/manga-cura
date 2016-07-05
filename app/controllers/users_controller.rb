@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(1)
+    @user = User.find(params[:id])
     @comics = @user.books
   end
 
@@ -20,6 +20,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+
+  end
+
+  def destroy
+    @user = User.find(params[:id]).destroy
+    #flash[:success]="User deleted"
+    redirect_to top_path
   end
 
   def update
@@ -35,9 +42,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :gender, :birthday, :email)
-  def
+  end
 
-  def config
+  def setting
 
   end
 
