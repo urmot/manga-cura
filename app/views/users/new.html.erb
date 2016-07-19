@@ -1,7 +1,10 @@
-<h1>Sign up</h1>
+<h1 class="text-center">新規アカウント作成</h1>
+
+<div class="form-horizontal" role="form">
 
 <%= form_for @user, url: users_path do |f| %>
-<% if @user.errors.any? %>
+
+  <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited
       this article from being saved:</h2>
@@ -12,42 +15,65 @@
     </ul>
   </div>
   <% end %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
 
-  <p>
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-  </p>
+  <div class="form-group">
+    <%= f.label :name, :class => "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :name , :class => "form-control", placeholder: '苗字　名前' %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.text_field :password_confirmation %>
-  </p>
+  <div class="form-group">
+    <%= f.label :password, :class => "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :password, :class => "form-control", placeholder: 'パスワード'  %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :gender %>
-    <%= select :gender, :gender, [["Male", "M"], ["Female", "F"]]%>
-  </p>
+  <div class="form-group">
+    <%= f.label :password_confirmation, :class => "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :password_confirmation, :class => "form-control", placeholder: '確認用パスワード'  %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :birthday %>
-    <%= f.date_select(:birthday,
-                      :use_month_numbers=>true,
-                      :date_separator => '/',
-                      :start_year=>1930, :end_year => (Time.now.year - 10),
-                      :default =>'1990-1-1'.to_date) %>
-  </p>
+  <div class="form-group">
+    <%= f.label :gender, :class => "col-sm-3 control-label" %>
+    <div class="col-sm-2">
+      <%= f.select(:gender, options_for_select([["男性", "M"], ["女性", "F"]]), {}, { class: "form-control" }) %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
+  <div class="form-group form-inline">
+    <%= f.label :birthday, :class => "col-sm-3 control-label" %>
+    <div class="col-sm-3">
+      <%= f.date_select :birthday,
+                        {:use_month_numbers => true,
+                        :start_year => 1930, :end_year => (Time.now.year - 10),
+                        :default => '1990-1-1'.to_date},
+                        {:class => ['form-control', display: 'inline-block']} %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="form-group">
+    <%= f.label :email, :class => "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :email, :class => "form-control", placeholder: 'メールアドレス'  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <%= f.submit :class => "btn btn-default" %>
+    </div>
+  </div>
+
 
 <% end %>
+
+<div class="col-sm-offset-3">
+  Already have an account?
+  <%= link_to "Log in!", login_path %>
+</div>
+
+</div>

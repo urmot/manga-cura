@@ -1,6 +1,6 @@
 <center><h1>本棚</h1></center>
 
-<<<<<<< HEAD
+
 <table border = "3">
   <td>
     <p>ID　　　　　：<%= @user.id %></p>
@@ -12,19 +12,6 @@
                     method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </td>
 <table>
-=======
-<p>
-  <table border = "3">
-    <td>
-      <p>ID　　　　　：<%= @user.id %></p>
-      <p>アカウント名：<%= @user.name %><br></p>
-      <p>お気に入り数：</p>
-      <p>登録作者数　：</p>
-      <p><%= link_to '設定', edit_users_path %></p>
-    </td>
-  <table>
-</p>
->>>>>>> master
 
 <p>
 <table>
@@ -36,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-      <% @user.books.each_with_index do |book, i| %>
+      <% @user.comics.each_with_index do |book, i| %>
         <tr>
           <td><%= link_to book.title,comic_path(book) %>&emsp;</td>
           <td><%= book.description %></td>
