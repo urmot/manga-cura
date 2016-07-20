@@ -1,18 +1,45 @@
-<h1>本の情報</h1>
+<div class="container">
 
-<p>
-  タイトル<br>
-  <%= @comics.title %>
-</p>
-<p>
-  著者<br>
-  <%= @comics.description %>
-</p>
+  <!-- navbar -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-fixed-top">
 
-<p>
+      <div class="navbar-header">
+        <%= link_to 'Top', top_path, class:'navbar-brand' %>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li><%= link_to '本棚', user_path, class:'navbar-brand' %></li>
+      </ul>
+
+    </nav>
+  </div>
+
+<!-- content -->
+<div class="row" style="padding:80px 0 0 0">
+<div class="jumbotron">
+  <!-- side -->
+  <div class="col-md-7">
+    <p><h2><%= @comics.title %></p>
+    <p><small><%= @comics.description %></small><h2></p>
+
+    <p>
+      <button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
   <%= link_to "お気に入り登録", favorite_path(@comics), method: :get %>
-</p>
+</button>
+    </p>
+  </div><!-- end side -->
 
-<p>
-<%= link_to "本棚",users_path %>
-</p>
+
+  <!-- main -->
+
+    <div class="row">
+      <div class="col-md-1">
+        <!-- データベースからのurlの受け取り方がわからない -->
+        <img src="<%= @comics.image_url%>"　class="img-responsive img-rounded">
+    </div><!-- end main -->
+  </div>
+</div>
+</div>
+</div>
