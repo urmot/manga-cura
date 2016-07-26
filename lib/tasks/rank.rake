@@ -4,6 +4,7 @@ namespace :rank do
   require 'kconv'
   require 'active_record'
 
+  #環境設定
   ActiveRecord::Base.establish_connection(
     adapter: :sqlite3,
     encoding: :utf8,
@@ -16,45 +17,49 @@ namespace :rank do
     self.table_name = 'comics'
   end
 
-  desc 'get scores'
-  task :get_scores do
-    urls = []
-    urls.push('http://www.cmoa.jp/ranking/cd')
-    urls.push('http://www.cmoa.jp/ranking/md')
-    urls.push('http://www.cmoa.jp/ranking/wd')
-
-    Anemone.crawl(urls, :depth_limit => 1) do |anemone|
-
-      #総合毎日ランキング
-      anemone.on_pages_like(%r[ranking\/[cdmdwd]]) do
-        anemone.on_every_page do |page|
-          doc = Nokogiri::HTML.parse(page.body.toutf8)
-          doc_comics = doc.xpath(%Q[//*[@id="home"]/section[2]/div/div/div/div[4]/ul/li])
-          doc_type = doc.xpath(%Q[//*[@id="home"]/section[2]/div/div/div/div[1]/section/div/ul/li/div]).text
-
-          doc_comics.each do |doc_comic|
-            break if doc_type.blank?
-            _title =  doc_comic.css(".title_box_each_box_title_box_disp_box > .title_name > a").text
-            _url =  doc_comic.css(".title_box_each_box_title_box_disp_box > .title_name > a")[0]['href']
-
-            comic = Comic.find_or_create_by(title: _title, url: _url)
-            score = (1000 - doc_comic.css(".title_box_each_box_title_box_thum_box > .ranking_detail_title").text.to_f) / 1000
-
-            case doc_type
-            when '全体'
-              comic.score_day += score
-            when '男性'
-              comic.score_day_man += score
-            when '女性'
-              comic.score_day_women += score
-            end
-
-            comic.save validate: false
-            p comic
-          end
-        end
+  #クローラ
+  desc 'get scores(batch)'
+  task :get_scores, :type do |task, args|
+    urls = ['http://www.tonarinoyj.jp/ranking/']
+    Anemone.crawl(urls, :depth_limit => 0) do |anemone|
+      anemone.on_every_page do |page|
+        doc = Nokogiri::HTML.parse(page.body.toutf8)
+        get_ranking(doc.css("#ranking-social > ol > li"), false) if Time.now.day == last_day || args[:type] == 'init'
+        get_ranking(doc.css("#ranking-access > ol > li"), true) if Time.now.hour == 0 || args[:type] == 'init'
       end
     end
   end
+  #ranking-social > ol > li:nth-child(3) > a > dl > dd > em
 
+  private
+
+  def get_ranking(doc, dayly)
+    doc.each do |doc_comic|
+      _title = doc_comic.css("a > dl > dd > p > strong").text
+      _score = doc_comic.css("a > dl > dd > em").text.to_f
+
+      comic = Comic.find_by(title: _title)
+      comic = Comic.new(title: _title) if comic.nil?
+
+      if dayly
+        comic.score_month =  _score
+      else
+        comic.score_month =  _score
+      end
+      p comic
+      comic.save
+    end
+  end
+
+  def last_day
+    month = Time.now.month
+    case month
+    when 1, 3, 5, 7, 8, 10, 12
+      return 31
+    when 2
+      return Day.today.leap? ? 29 : 28
+    when 4, 6, 9, 11
+      return 30
+    end
+  end
 end
