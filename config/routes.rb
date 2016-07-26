@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   resources :comics
   resources :users
 
-  get "/users/:id" => "favorites#create", as: "favorite"
-  delete "/users/:id" => "favorites#destroy",as:"destroy_favorite"
+  post "/favorites/" => "favorites#create", as: "create"
+  delete "/favorites/:id" => "favorites#destroy", as:"destroy"
 
   match 'top', to: 'comics#top', via: 'get'
   match 'search', to: 'comics#search', via: 'get'
