@@ -20,6 +20,5 @@ Rails.application.routes.draw do
 
   match 'top', to: 'comics#top', via: 'get'
   match 'search', to: 'comics#search', via: 'get'
-  match 'login', to: 'users#login', via: 'get'
 
 end
