@@ -2,15 +2,15 @@
 
 <p>
   タイトル<br>
-  <%= @comics.title %>
+  <%= @comic.title %>
 </p>
 <p>
   著者<br>
-  <%= @comics.description %>
+  <%= @comic.description %>
 </p>
 
 <p>
-  <%= link_to "お気に入り登録", favorite_path(@comics), method: :get %>
+  <%= link_to "お気に入り登録", favorite_path(@comic), method: :get %>
 </p>
 
 <p>
