@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< HEAD
 
   <!-- navbar -->
   <div class="row">
@@ -16,8 +17,9 @@
   </div>
 
   <!-- content -->
+=======
+>>>>>>> 3be845b8d8614b79e2fa4e33d2f398053dacb034
   <div class="row" style="padding:80px 0 0 0">
-    <!-- side -->
     <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -29,7 +31,6 @@
               <li><p>&emsp;  アカウント名：<%= @user.name %></p></li>
               <li><p>&emsp;  お気に入り数：<%= @favorites_count %></p></li>
               <li><p>&emsp;  登録作者数　：</p></li>
-
             </ul>
         </div>
         <div class="panel-footer">
@@ -40,9 +41,8 @@
           </ul>
         </div>
       </div>
-    </div><!-- end side -->
+    </div>
 
-    <!-- main -->
     <div class="col-md-9">
       <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
         <div class="page-header">
@@ -55,7 +55,11 @@
       </div>
 
       <div class="row">
+<<<<<<< HEAD
       <!-- この単位を繰り返す -->
+=======
+
+>>>>>>> 3be845b8d8614b79e2fa4e33d2f398053dacb034
       <% @user.comics.each_with_index do |comic, i| %>
       <%= page_entries_info comic %>
       <div class="col-md-4">
@@ -71,35 +75,38 @@
       </div>
       <%= paginate comic %>
       <% end %>
-      <!-- ここまで -->
-      <!-- 繰り返し -->
 
       </div>
 
       <nav>
         <center>
-        <ul class="pagination">
-          <li>
-            <a href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li>
-            <a href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </center>
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </center>
       </nav>
+<<<<<<< HEAD
 
 
 
     </div><!-- end main -->
+=======
+      </div>
+    </div>
+>>>>>>> 3be845b8d8614b79e2fa4e33d2f398053dacb034
   </div>
 </div>
