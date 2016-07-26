@@ -1,10 +1,11 @@
 class ComicsController < ApplicationController
   def top
-
+    @comics = Comic.all
   end
 
   def show
-    @comic = Comic.find(params[:id])
+    @comics = Comic.find(params[:id])
+    @stories = Story.where("comic_id  = ?", @comics.id)
   end
 
   def search

@@ -1,18 +1,59 @@
-<h1>本の情報</h1>
+<div class="container">
 
-<p>
-  タイトル<br>
-  <%= @comics.title %>
-</p>
-<p>
-  著者<br>
-  <%= @comics.description %>
-</p>
+  <!-- navbar -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-fixed-top">
 
-<p>
-  <%= link_to "お気に入り登録", favorite_path(@comics), method: :get %>
-</p>
+      <div class="navbar-header">
+        <%= link_to 'Top', top_path, class:'navbar-brand' %>
+      </div>
 
-<p>
-<%= link_to "本棚",users_path %>
-</p>
+      <ul class="nav navbar-nav">
+        <li><%= link_to '本棚', user_path, class:'navbar-brand' %></li>
+      </ul>
+
+    </nav>
+  </div>
+
+<!-- content -->
+<div class="row" style="padding:80px 0 0 0">
+<div class="jumbotron">
+  <!-- side -->
+  <div class="col-md-7">
+    <p><h2><%= @comics.title %></p>
+    <p><small><%= @comics.description %></small><h2></p>
+
+    <p>
+      <button type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+        <%= link_to "お気に入り登録", favorite_path(favorite: {comic_id: @comics.id}), method: :post %>
+      </button>
+    </p>
+  </div><!-- end side -->
+
+
+  <!-- main -->
+  <div class="row">
+    <div class="col-md-1">
+      <img src="<%= @comics.image_url%>"　itemprop="thumbnail">
+    </div><!-- end main -->
+  </div>
+</div>
+
+  <table class="table table-striped table-hover">
+    <tbody>
+      <% @stories.each_with_index do |story, i| %>
+      <tr>
+        <!-- この単位を繰り返す　-->
+        <td>
+          <a href="<%= story.url %>" class="m-thumb-episode__inner" itemprop="url">
+            <img src="<%= story.image%>" width="25%" height="50%">&emsp;
+            第<%= story.number %>話 <%= story.title %></a></td>
+        <td><br><br><br><%= story.date %></td>
+      </tr>
+      <% end %>
+      <!-- ここまで繰り返し -->
+    </tbody>
+  </table>
+</div>
+</div>
