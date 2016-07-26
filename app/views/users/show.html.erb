@@ -1,4 +1,24 @@
 <div class="container">
+<<<<<<< HEAD
+
+  <!-- navbar -->
+  <div class="row">
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+      <div class="navbar-header">
+        <%= link_to 'Top', top_path, class:'navbar-brand' %>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li><%= link_to '本棚', user_path, class:'active' %></li>
+      </ul>
+
+    </nav>
+  </div>
+
+  <!-- content -->
+=======
+>>>>>>> 3be845b8d8614b79e2fa4e33d2f398053dacb034
   <div class="row" style="padding:80px 0 0 0">
     <div class="col-md-3">
       <div class="panel panel-default">
@@ -9,7 +29,7 @@
             <ul class="nav nav-pills nav-stacked">
               <li><p>&emsp;  ID　　　　　：<%= @user.id %></p></li>
               <li><p>&emsp;  アカウント名：<%= @user.name %></p></li>
-              <li><p>&emsp;  お気に入り数：</p></li>
+              <li><p>&emsp;  お気に入り数：<%= @favorites_count %></p></li>
               <li><p>&emsp;  登録作者数　：</p></li>
             </ul>
         </div>
@@ -25,24 +45,37 @@
 
     <div class="col-md-9">
       <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
-        <h1><small>お気に入り</small></h1>
+        <div class="page-header">
+          <h1><small>
+            <%= link_to 'お気に入り', user_path %>
+
+            <%= link_to '閲覧履歴', user_path %>
+          </small></h1>
+        </div>
       </div>
 
       <div class="row">
+      <!-- この単位を繰り返す -->
 
-      <% @user.comics.each_with_index do |comic, i| %>
+      <% @user.comics.each do |comic| %>
+
       <div class="col-md-4">
         <div class="thumbnail" style="text-align:center;padding-top:10px;">
           <img src="<%= comic.image_url%>"　class="img-responsive img-rounded">
           <div class="caption">
               <p><b><%= link_to comic.title,comic_path(comic) %></b></p>
               <p><%= comic.description %></p>
-              <p style="margin-bottom:0px"><%= link_to "お気に入りから削除",destroy_favorite_path(@favorites[i][:id]),
-                                                          class: 'btn btn-default',method: :delete %></p>
+              <p style="margin-bottom:0px">
+                <%= link_to "お気に入りから削除",destroy_favorite_path(comic.id),
+                      class: 'btn btn-default',method: :delete %>
+              </p>
           </div>
         </div>
       </div>
+
       <% end %>
+
+      </div>
 
       <nav>
         <center>
@@ -65,7 +98,14 @@
           </ul>
         </center>
       </nav>
+<<<<<<< HEAD
+
+
+
+    </div><!-- end main -->
+=======
       </div>
     </div>
+>>>>>>> 3be845b8d8614b79e2fa4e33d2f398053dacb034
   </div>
 </div>
