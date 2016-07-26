@@ -4,7 +4,7 @@ class CreateComics < ActiveRecord::Migration
       t.string :title, null: false
       t.string :description
       t.string :image_url
-      t.string :url, null: false
+      t.string :url
       t.integer :score
 
       t.timestamps null: false
