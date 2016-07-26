@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @favorites_count = @favorites.count
   end
 
+  #新規ユーザー作成用アクション
   def create
     @user = User.new(user_params)
 
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 
   end
 
+  #ユーザー退会用アクション
   def destroy
     @user = User.find(params[:id]).destroy
     #flash[:success]="User deleted"

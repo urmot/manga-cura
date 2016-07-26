@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'signup'    => 'users#new'
   get 'setting'   => 'users#setting', as:"setting"
   get 'login'     => 'sessions#new'
+  get 'comic/:id'     => 'comics#show'
   post 'login'    => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
