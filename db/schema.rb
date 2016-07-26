@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160719053036) do
     t.string   "title",                           null: false
     t.string   "description"
     t.string   "image_url"
-    t.string   "url",                             null: false
+    t.string   "url"
     t.integer  "score"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
