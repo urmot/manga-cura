@@ -55,25 +55,24 @@
       </div>
 
       <div class="row">
-<<<<<<< HEAD
       <!-- この単位を繰り返す -->
-=======
 
->>>>>>> 3be845b8d8614b79e2fa4e33d2f398053dacb034
-      <% @user.comics.each_with_index do |comic, i| %>
-      <%= page_entries_info comic %>
+      <% @user.comics.each do |comic| %>
+
       <div class="col-md-4">
         <div class="thumbnail" style="text-align:center;padding-top:10px;">
           <img src="<%= comic.image_url%>"　class="img-responsive img-rounded">
           <div class="caption">
               <p><b><%= link_to comic.title,comic_path(comic) %></b></p>
               <p><%= comic.description %></p>
-              <p style="margin-bottom:0px"><%= link_to "お気に入りから削除",destroy_favorite_path(@favorites[i][:id]),
-                                                          class: 'btn btn-default',method: :delete %></p>
+              <p style="margin-bottom:0px">
+                <%= link_to "お気に入りから削除",destroy_favorite_path(comic.id),
+                      class: 'btn btn-default',method: :delete %>
+              </p>
           </div>
         </div>
       </div>
-      <%= paginate comic %>
+
       <% end %>
 
       </div>

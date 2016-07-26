@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :add_favorite]
 
   def show
-    @favorites = Favorite.where("user_id  = ?", @user)
+    @favorites = Favorite.where("user_id = ?", @user)
     @favorites_count = @favorites.count
   end
 
