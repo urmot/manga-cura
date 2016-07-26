@@ -1,35 +1,72 @@
-<center><h1>本棚</h1></center>
+<div class="container">
+  <div class="row" style="padding:80px 0 0 0">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <center><i class="glyphicon glyphicon-user"></i>My page</center>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+              <li><p>&emsp;  ID　　　　　：<%= @user.id %></p></li>
+              <li><p>&emsp;  アカウント名：<%= @user.name %></p></li>
+              <li><p>&emsp;  お気に入り数：</p></li>
+              <li><p>&emsp;  登録作者数　：</p></li>
+            </ul>
+        </div>
+        <div class="panel-footer">
+          <ul class="nav nav-pills nav-stacked">
+            <li><%= link_to '設定', setting_path, class:'glyphicon glyphicon-cog' %></li>
+            <li><%= link_to '退会', user_path, class:'glyphicon glyphicon-exclamation-sign',
+                            method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
 
-<table border = "3">
-  <td>
-    <p>ID　　　　　：<%= @user.id %></p>
-    <p>アカウント名：<%= @user.name %><br></p>
-    <p>お気に入り数：</p>
-    <p>登録作者数　：</p>
-    <p><%= link_to '設定', setting_path %></p>
-    <p><%= link_to '退会', user_path,
-                    method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  </td>
-<table>
+    <div class="col-md-9">
+      <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
+        <h1><small>お気に入り</small></h1>
+      </div>
 
-<p>
-<table>
-    <thead>
-        <tr>
-          <th>タイトル</th>
-          <th>著者</th>
-          <th>お気に入り</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% @user.comics.each_with_index do |book, i| %>
-        <tr>
-          <td><%= link_to book.title,comic_path(book) %>&emsp;</td>
-          <td><%= book.description %></td>
-          <td><%= link_to "削除",destroy_favorite_path(@favorites[i][:id]), method: :delete %>&emsp;</td>
-        </tr>
+      <div class="row">
+
+      <% @user.comics.each_with_index do |comic, i| %>
+      <div class="col-md-4">
+        <div class="thumbnail" style="text-align:center;padding-top:10px;">
+          <img src="<%= comic.image_url%>"　class="img-responsive img-rounded">
+          <div class="caption">
+              <p><b><%= link_to comic.title,comic_path(comic) %></b></p>
+              <p><%= comic.description %></p>
+              <p style="margin-bottom:0px"><%= link_to "お気に入りから削除",destroy_favorite_path(@favorites[i][:id]),
+                                                          class: 'btn btn-default',method: :delete %></p>
+          </div>
+        </div>
+      </div>
       <% end %>
-    </tbody>
-</table>
-</p>
+
+      <nav>
+        <center>
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </center>
+      </nav>
+      </div>
+    </div>
+  </div>
+</div>
