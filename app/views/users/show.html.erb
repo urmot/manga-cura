@@ -15,8 +15,6 @@
     </nav>
   </div>
 
-<!-- <center><h1>本棚</h1></center> -->
-
   <!-- content -->
   <div class="row" style="padding:80px 0 0 0">
     <!-- side -->
@@ -29,7 +27,7 @@
             <ul class="nav nav-pills nav-stacked">
               <li><p>&emsp;  ID　　　　　：<%= @user.id %></p></li>
               <li><p>&emsp;  アカウント名：<%= @user.name %></p></li>
-              <li><p>&emsp;  お気に入り数：</p></li>
+              <li><p>&emsp;  お気に入り数：<%= @favorites_count %></p></li>
               <li><p>&emsp;  登録作者数　：</p></li>
 
             </ul>
@@ -47,16 +45,21 @@
     <!-- main -->
     <div class="col-md-9">
       <div class="page-header" style="margin-top:-30px;padding-bottom:0px;">
-        <h1><small>お気に入り</small></h1>
+        <div class="page-header">
+          <h1><small>
+            <%= link_to 'お気に入り', user_path %>
+
+            <%= link_to '閲覧履歴', user_path %>
+          </small></h1>
+        </div>
       </div>
 
       <div class="row">
-
       <!-- この単位を繰り返す -->
       <% @user.comics.each_with_index do |comic, i| %>
+      <%= page_entries_info comic %>
       <div class="col-md-4">
         <div class="thumbnail" style="text-align:center;padding-top:10px;">
-          <!-- データベースからのurlの受け取り方がわからない -->
           <img src="<%= comic.image_url%>"　class="img-responsive img-rounded">
           <div class="caption">
               <p><b><%= link_to comic.title,comic_path(comic) %></b></p>
@@ -66,9 +69,12 @@
           </div>
         </div>
       </div>
+      <%= paginate comic %>
       <% end %>
       <!-- ここまで -->
       <!-- 繰り返し -->
+
+      </div>
 
       <nav>
         <center>
@@ -92,7 +98,8 @@
       </center>
       </nav>
 
-      </div>
+
+
     </div><!-- end main -->
   </div>
 </div>
