@@ -73,6 +73,9 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     kgio (2.10.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -186,6 +189,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  kaminari-bootstrap (~> 3.0.1)
   mysql2 (>= 0.3.13, < 0.5)
   pry-byebug
   pry-doc

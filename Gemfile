@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sqlite3', '~> 1.3.11'
 gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 group :development, :test do
   gem 'byebug'

@@ -1,4 +1,3 @@
-
 <div class="container">
 
   <!-- ユーザー情報 -->
@@ -18,7 +17,7 @@
         <div class="panel-footer">
           <ul class="nav nav-pills nav-stacked">
             <li><%= link_to '設定', setting_path, class:'glyphicon glyphicon-cog' %></li>
-            <li><%= link_to '退会', user_path, class:'glyphicon glyphicon-exclamation-sign',
+            <li><%= link_to '退会', user_path(@user.id), class:'glyphicon glyphicon-exclamation-sign',
                             method: :delete, data: { confirm: 'Are you sure?' } %></li>
           </ul>
         </div>
@@ -28,36 +27,30 @@
 
     <div class="col-md-9">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">お気に入り</a></li>
-        <li role="presentation"><%= link_to '閲覧履歴', history_path%> </li>
+        <li role="presentation"><%= link_to 'お気に入り', user_path(@user.id)%> </li>
+        <li role="presentation" class="active"><a href="#">閲覧履歴</a></li>
       </ul>
 
       <div class="row">
         <!-- この単位を繰り返す -->
-
-        <% @comics.each do |comic| %>
-
-          <div class="col-md-4">
-            <div class="thumbnail" style="text-align:center;padding-top:10px;">
-              <img src="<%= comic.image_url%>"　class="img-responsive img-rounded">
-              <div class="caption">
-                <p><b><%= link_to comic.title,comic_path(comic) %></b></p>
-                <% comic.authors.each do |author| %>
-                  <p><small><%= author.name %></small><h2></p>
-                <% end %>
-                <p style="margin-bottom:0px">
-                  <%= link_to "お気に入りから削除",destroy_favorite_path(comic.id),
-                                  class: 'btn btn-default',method: :delete %>
-               </p>
-             </div>
-           </div>
-         </div>
-
-        <% end %>
+        <table class="table table-striped table-hover">
+          <tbody>
+            <% @stories.each do |reads| %>
+            <tr>
+              <td>
+                <a href="<%= reads.url %>" class="m-thumb-episode__inner" itemprop="url">
+                  <img src="<%= reads.image%>" width="20%" height="50%">&emsp;
+                  第<%= reads.number%>話 <%= reads.title%>
+                </a>
+              </td>
+            </tr>
+            <% end %>
+            <!-- ここまで繰り返し -->
+          </tbody>
+        </table>
 
       </div>
-      <center><%= paginate @comics %></center>
+      <center><%= paginate @stories %></center>
     </div>
-
   </div><!-- end main -->
 </div>
