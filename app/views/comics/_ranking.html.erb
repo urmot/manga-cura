@@ -1,0 +1,26 @@
+<div class="col-sm-5 col-md-4">
+  <div class="thumbnail">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th><%= title %>ランキング</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% comics.order("score DESC").limit(5).each_with_index do |comic, i| %>
+        <tr>
+          <th><img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="70" width="60"></th>
+          <th class="pull-left"><h3>  <%= i+1 %> <%= link_to comic.title, comic_path(comic) %></h3>
+            <h4>
+              <% comic.authors.each do |author| %>
+                <p><%= author.name %></p>
+              <% end %>
+            </h4>
+          </th>
+          <th><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <%= comic.score %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
