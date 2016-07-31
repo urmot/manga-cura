@@ -1,0 +1,17 @@
+<div class="jumbotron" style="padding:50px">
+  <h3>"<%= params[:query]%>"の検索結果</h3>
+
+  <div class="comics">
+  <% @comics.each do |comic| %>
+      <div class="comic col-md-3 col-sm-12">
+        <div class="thumbnail">
+          <img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="150" width="141">
+          <div class="caption">
+            <p><h3><%= link_to comic.title, comic_path(comic) %></h3></p>
+            <p><%= comic.description %></p>
+          </div>
+        </div>
+    </div>
+  <% end unless @comics.nil?%>
+  </div>
+</div>
