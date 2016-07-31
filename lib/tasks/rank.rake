@@ -29,7 +29,6 @@ namespace :rank do
       end
     end
   end
-  #ranking-social > ol > li:nth-child(3) > a > dl > dd > em
 
   private
 
@@ -46,6 +45,7 @@ namespace :rank do
       else
         comic.score_month =  _score
       end
+      comic.url = 'www.google.com' if comic.url.nil?
       p comic
       comic.save
     end
