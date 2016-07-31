@@ -1,27 +1,15 @@
 <div class="container">
 
-  <!-- navbar -->
-  <div class="row">
-    <nav class="navbar navbar-default navbar-fixed-top">
-
-      <div class="navbar-header">
-        <%= link_to 'Top', top_path, class:'navbar-brand' %>
-      </div>
-
-      <ul class="nav navbar-nav">
-        <li><%= link_to '本棚', user_path, class:'navbar-brand' %></li>
-      </ul>
-
-    </nav>
-  </div>
-
 <!-- content -->
 <div class="row" style="padding:80px 0 0 0">
 <div class="jumbotron">
   <!-- side -->
   <div class="col-md-7">
     <p><h2><%= link_to @comics.title, @comics.url %></p>
-    <p><small><%= @comics.description %></small><h2></p>
+      <% @comics.authors.each do |author| %>
+    <p><small><%= author.name %></small><h2></p>
+      <% end %>
+    <p><%= @comics.description%></p>
 
     <p>
       <button type="button" class="btn btn-default btn-lg">
@@ -35,20 +23,23 @@
   <!-- main -->
   <div class="row">
     <div class="col-md-1">
-      <img src="<%= @comics.image_url%>"　itemprop="thumbnail">
+      <img src="<%= @comics.image_url%>"　alt="o_p_goldfilm" height="400" width="300">
     </div><!-- end main -->
   </div>
 </div>
 
   <table class="table table-striped table-hover">
     <tbody>
-      <% @stories.each_with_index do |story, i| %>
+      <% @stories.each do |story| %>
       <tr>
         <!-- この単位を繰り返す　-->
         <td>
           <a href="<%= story.url %>" class="m-thumb-episode__inner" itemprop="url">
-            <img src="<%= story.image%>" width="25%" height="50%">&emsp;
-            第<%= story.number %>話 <%= story.title %></a></td>
+            <img src="<%= story.image%>" width="20%" height="50%">&emsp;
+          </a>
+          <%= link_to "第#{story.number}話 #{story.title}", read_path(read: {story_id: story.id, url: story.url}), method: :post %>
+        </td>
+
         <td><br><br><br><%= story.date %></td>
       </tr>
       <% end %>

@@ -16,7 +16,8 @@ gem 'anemone'
 gem 'nokogiri'
 gem 'whenever'
 gem 'kaminari'
-gem 'otacrawler', require: false
+gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'otacrawler',require: false
 
 group :development, :test do
   gem 'byebug'
