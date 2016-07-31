@@ -10,7 +10,6 @@
       <%= link_to 'Manga Cura', top_path, class: 'navbar-brand' %>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <%= form_tag search_path, method: 'get', class: 'navbar-form navbar-left', role: 'search' do %>
         <div class="form-group">
@@ -20,8 +19,16 @@
         <%= submit_tag 'Submit', class: 'btn btn-success' %>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Singup', new_user_path %></li>
-        <li><%= link_to 'Singin', login_path %></li>
+        <% if logged_in? %>
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <span class="glyphicon glyphicon-book">Mypage
+            <% end %>
+          </li>
+        <% else %>
+          <li><%= link_to 'Singup', new_user_path %></li>
+          <li><%= link_to 'Singin', login_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>
