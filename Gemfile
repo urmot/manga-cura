@@ -12,8 +12,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sqlite3', '~> 1.3.11'
+gem 'anemone'
+gem 'nokogiri'
+gem 'whenever'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'otacrawler',require: false
 
 group :development, :test do
   gem 'byebug'

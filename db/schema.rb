@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613222630) do
+ActiveRecord::Schema.define(version: 20160719053036) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name",       null: false
@@ -36,13 +36,19 @@ ActiveRecord::Schema.define(version: 20160613222630) do
   add_index "classifications", ["comic_id"], name: "index_classifications_on_comic_id"
 
   create_table "comics", force: :cascade do |t|
-    t.string   "title",       null: false
+    t.string   "title",                           null: false
     t.string   "description"
     t.string   "image_url"
-    t.string   "url",         null: false
+    t.string   "url"
     t.integer  "score"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.float    "score_day",         default: 0.0
+    t.float    "score_day_man",     default: 0.0
+    t.float    "score_day_women",   default: 0.0
+    t.float    "score_month",       default: 0.0
+    t.float    "score_month_man",   default: 0.0
+    t.float    "score_month_women", default: 0.0
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -86,13 +92,6 @@ ActiveRecord::Schema.define(version: 20160613222630) do
 
   add_index "stories", ["comic_id"], name: "index_stories_on_comic_id"
 
-  create_table "tests", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "password_digest", null: false
@@ -104,14 +103,14 @@ ActiveRecord::Schema.define(version: 20160613222630) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "writings", force: :cascade do |t|
+  create_table "writing", force: :cascade do |t|
     t.integer  "comic_id"
     t.integer  "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "writings", ["author_id"], name: "index_writings_on_author_id"
-  add_index "writings", ["comic_id"], name: "index_writings_on_comic_id"
+  add_index "writing", ["author_id"], name: "index_writing_on_author_id"
+  add_index "writing", ["comic_id"], name: "index_writing_on_comic_id"
 
 end
