@@ -25,21 +25,35 @@
 
     <p>
       <button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-  <%= link_to "お気に入り登録", favorite_path(@comics), method: :get %>
-</button>
+        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+        <%= link_to "お気に入り登録", favorite_path(favorite: {comic_id: @comics.id}), method: :post %>
+      </button>
     </p>
   </div><!-- end side -->
 
 
   <!-- main -->
-
-    <div class="row">
-      <div class="col-md-1">
-        <!-- データベースからのurlの受け取り方がわからない -->
-        <img src="<%= @comics.image_url%>"　class="img-responsive img-rounded">
+  <div class="row">
+    <div class="col-md-1">
+      <img src="<%= @comics.image_url%>"　itemprop="thumbnail">
     </div><!-- end main -->
   </div>
 </div>
+
+  <table class="table table-striped table-hover">
+    <tbody>
+      <% @stories.each_with_index do |story, i| %>
+      <tr>
+        <!-- この単位を繰り返す　-->
+        <td>
+          <a href="<%= story.url %>" class="m-thumb-episode__inner" itemprop="url">
+            <img src="<%= story.image%>" width="25%" height="50%">&emsp;
+            第<%= story.number %>話 <%= story.title %></a></td>
+        <td><br><br><br><%= story.date %></td>
+      </tr>
+      <% end %>
+      <!-- ここまで繰り返し -->
+    </tbody>
+  </table>
 </div>
 </div>

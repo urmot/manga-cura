@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :add_favorite]
 
   def show
-    @user = User.find(params[:id])
-    @favorites = Favorite.where("user_id  = ?", @user)
+    @favorites = Favorite.where("user_id = ?", @user)
+    @favorites_count = @favorites.count
   end
 
+  #新規ユーザー作成用アクション
   def create
     @user = User.new(user_params)
 
@@ -15,29 +17,6 @@ class UsersController < ApplicationController
         end
   end
 
-  #お気に入り登録用アクション
- def add_favorite
-   @user_id = session[:id] #ログインしたユーザのID
-   @comic_id = Comic.find(params[:id]).id #特定の本のID
-   @day = Time.now
-   #book_idに@book_id、user_idに@user_idを入れて、Favoriteモデルに新しいオブジェクトを作る
-   @favorite = Favorite.new(comic_id: @comic_id, user_id: @user_id, date: @day)
-   if @favorite.save
-     #保存に成功した場合、本詳細画面に戻る
-     redirect_to comic_path
-   end
- end
-
- #お気に入り削除用アクション
- def destroy_favorite
-   @favorite = Favorite.find(params[:id])
-   #if @favorite.destroy
-     #削除に成功した場合、ログインしている本棚画面に戻る
-     #redirect_to users_path(session[:id])
-     #redirect_to user_path(2)
-   #end
- end
-
   def new
     @user = User.new
   end
@@ -46,6 +25,7 @@ class UsersController < ApplicationController
 
   end
 
+  #ユーザー退会用アクション
   def destroy
     @user = User.find(params[:id]).destroy
     #flash[:success]="User deleted"
@@ -68,6 +48,10 @@ class UsersController < ApplicationController
 
   def setting
 
+  end
+
+  def set_user
+    @user = session[:user_id].nil? ? User.find(params[:id]) : User.find(session[:user_id])
   end
 
 end

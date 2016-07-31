@@ -6,17 +6,15 @@ Rails.application.routes.draw do
   get 'signup'    => 'users#new'
   get 'setting'   => 'users#setting', as:"setting"
   get 'login'     => 'sessions#new'
+  get 'comic/:id'     => 'comics#show'
   post 'login'    => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
   resources :comics
   resources :users
 
-  #以下今回追加分
-  get "/users/:id" => "users#add_favorite", as: "favorite"
-
-  #個人ページからお気に入りを削除する
-  delete "/users/:id" => "users#destroy_favorite",as:"destroy_favorite"
+  post "/favorites/" => "favorites#create", as: "favorite"
+  delete "/favorites/:id" => "favorites#destroy", as:"destroy_favorite"
 
   match 'top', to: 'comics#top', via: 'get'
   match 'search', to: 'comics#search', via: 'get'

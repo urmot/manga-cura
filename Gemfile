@@ -12,9 +12,17 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sqlite3', '~> 1.3.11'
+gem 'anemone'
+gem 'nokogiri'
+gem 'whenever'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-doc'    # methodを表示
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
+  gem 'pry-stack_explorer' # スタックをたどれる
 end
 
 group :development do
