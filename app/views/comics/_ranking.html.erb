@@ -9,7 +9,7 @@
       <tbody>
         <% comics.each_with_index do |comic, i| %>
         <tr>
-          <th><img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="70" width="60"></th>
+          <th><img src="<%= comic.image_url %>"  height="70" width="60"></th>
           <th class="pull-left"><h3>  <%= i+1 %> <%= link_to comic.title, comic_path(comic) %></h3>
             <h4>
               <% comic.authors.each do |author| %>
