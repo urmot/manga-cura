@@ -1,147 +1,26 @@
-<div class="page-header">
-  <h1>Comic <small>トップページだよ</small></h1>
-</div>
-<link rel="stylesheet" href="bootstrap.min.css" />
-<link rel="stylesheet" href="stickey-footer.css" />
-
+<h3>おすすめ作品</h3>
 <div class="jumbotron">
-  <h3>おすすめ作品</h3>
-  <div class="row">
-
-    <% @comics.each do |comic| %>
-      <div style="width: 95%; height: 400px; overflow-y: scroll; margin: 0 auto;">
-        <div class="col-sm-5 col-md-3">
-          <div class="thumbnail">
-            <img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="150" width="141">
-            <div class="caption">
-              <p><h3><%= link_to comic.title, comic_path(comic) %></h3></p>
-              <p><%= comic.description %></p>
+  <div class="comics">
+        <% @comics.each do |comic| %>
+            <div class="comic">
+              <div class="thumbnail">
+                <%= image_tag comic.image_url, class: :comic_icon %>
+                <div class="caption">
+                  <p><h3><%= link_to comic.title, comic_path(comic) %></h3></p>
+                  <% comic.authors.each do |author| %>
+                    <p><%= author.name %></p>
+                  <% end %>
+                  <p><%= comic.description %></p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-</div>
-
-
-<style>
-th{
-  text-align: center;
-  vertical-align: middle;
-}
-</style>
-<div class="row">
-  <div class="col-sm-5 col-md-4">
-    <div class="thumbnail">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>全体ランキング</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @comics.each do |comic| %>
-          <tr><a href="#">
-            <th><img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="70" width="60"></th>
-            <th><h2>  1 <%= link_to comic.title, comic_path(comic) %></h2> <h4>  尾田栄一郎</h4></th>
-            <th><span class="glyphicon glyphicon-star" aria-hidden="true"></span> 190,000</th>
-          </a></tr>
-          <% end %>
-        </tbody>
-      </table>
     </div>
-  </div>
 
-  <div class="col-sm-5 col-md-4">
-    <div class="thumbnail">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>男性ランキング</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @comics.each do |comic| %>
-          <tr><a href="#">
-            <th><img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="70" width="60"></th>
-            <th><h2>  1 <%= link_to comic.title, comic_path(comic) %></h2> <h4>  尾田栄一郎</h4></th>
-            <th><span class="glyphicon glyphicon-star" aria-hidden="true"></span> 190,000</th>
-          </a></tr>
-          <% end %>
-        </tbody>
-      </table>
+
+    <div class="row">
+      <%= render 'ranking', comics: @comics, title: '全体', type: :all  %>
+      <%= render 'ranking', comics: @monthly_conmics, title: '月間', type: :monthly  %>
+      <%= render 'ranking', comics: @dayly_conmics, title: '週間', type: :dayly%>
     </div>
-  </div>
-
-  <div class="col-sm-5 col-md-4">
-    <div class="thumbnail">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>女性ランキング</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @comics.each do |comic| %>
-          <tr><a href="#">
-            <th><img src="<%= comic.image_url %>" alt="o_p_goldfilm" height="70" width="60"></th>
-            <th><h2>  1 <%= link_to comic.title, comic_path(comic) %></h2> <h4>  尾田栄一郎</h4></th>
-            <th><span class="glyphicon glyphicon-star" aria-hidden="true"></span> 190,000</th>
-          </a></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-
-
-<style>
-footer {
-  text-align: center;
-  padding: 10px;
-  background: #eee;
-}
-.navbar {
-  border-radius: 0;
-}
-.navbar-nav {
-  float: none;
-  width: 400px;
-  margin: 10px auto;
-}
-.navbar-nav>li {
-  text-align: center;
-  float: left;
-  width: 80px;
-  border-right: 1px solid #000;
-}
-.navbar-nav>li.first{
-  border-left: 1px solid #000;
-}
-.navbar-nav li a{
-  color: #fff;
-}
-</style>
-<footer class="container-fluid">
-  <ul class="navbar-nav list-inline">
-      <li class="first">
-          <a href="">MENU1</a>
-      </li>
-      <li>
-          <a href="">MENU2</a>
-      </li>
-      <li>
-          <a href="">MENU3</a>
-      </li>
-      <li>
-          <a href="">MENU4</a>
-      </li>
-      <li>
-          <a href="">MENU5</a>
-      </li>
-  </ul>
-</footer>

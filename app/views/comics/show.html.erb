@@ -5,7 +5,7 @@
 <div class="jumbotron">
   <!-- side -->
   <div class="col-md-7">
-    <p><h2><%= @comics.title %></p>
+    <p><h2><%= link_to @comics.title, @comics.url %></p>
       <% @comics.authors.each do |author| %>
     <p><small><%= author.name %></small><h2></p>
       <% end %>
