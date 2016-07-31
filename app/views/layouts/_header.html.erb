@@ -25,6 +25,7 @@
               <span class="glyphicon glyphicon-book">Mypage
             <% end %>
           </li>
+          <li><%= link_to 'Logout', logout_path, method: 'delete' %></li>
         <% else %>
           <li><%= link_to 'Singup', new_user_path %></li>
           <li><%= link_to 'Singin', login_path %></li>
