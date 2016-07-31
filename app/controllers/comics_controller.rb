@@ -1,6 +1,8 @@
 class ComicsController < ApplicationController
   def top
-    @comics = Comic.all
+    @comics = Comic.limit(5)
+    @monthly_conmics = Comic.limit(5).order("score_month DESC")
+    @dayly_conmics = Comic.limit(5).order("score_day DESC")
   end
 
   def show
