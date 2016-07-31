@@ -16,6 +16,7 @@ gem 'anemone'
 gem 'nokogiri'
 gem 'whenever'
 gem 'kaminari'
+gem 'otacrawler'
 
 group :development, :test do
   gem 'byebug'

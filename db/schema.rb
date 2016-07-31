@@ -92,13 +92,6 @@ ActiveRecord::Schema.define(version: 20160719053036) do
 
   add_index "stories", ["comic_id"], name: "index_stories_on_comic_id"
 
-  create_table "tests", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "password_digest", null: false
@@ -110,14 +103,14 @@ ActiveRecord::Schema.define(version: 20160719053036) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "writings", force: :cascade do |t|
+  create_table "writing", force: :cascade do |t|
     t.integer  "comic_id"
     t.integer  "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "writings", ["author_id"], name: "index_writings_on_author_id"
-  add_index "writings", ["comic_id"], name: "index_writings_on_comic_id"
+  add_index "writing", ["author_id"], name: "index_writing_on_author_id"
+  add_index "writing", ["comic_id"], name: "index_writing_on_comic_id"
 
 end
