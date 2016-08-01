@@ -35,19 +35,21 @@ namespace :rank do
   def get_ranking(doc, dayly)
     doc.each do |doc_comic|
       _title = doc_comic.css("a > dl > dd > p > strong").text
-      _score = doc_comic.css("a > dl > dd > em").text.to_f
+      _score = doc_comic.css("a > dl > dd > em").text
 
       comic = Comic.find_by(title: _title)
       comic = Comic.new(title: _title) if comic.nil?
 
       if dayly
-        comic.score_month =  _score
+        comic.score_day =  _score
       else
         comic.score_month =  _score
       end
+
       comic.url = 'www.google.com' if comic.url.nil?
-      p comic
+      comic.socre = comic.score_month + comic.score_day
       comic.save
+      p comic
     end
   end
 
